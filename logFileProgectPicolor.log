@@ -1,0 +1,99 @@
+package pickercolor;
+
+import javafx.scene.paint.Color;
+
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXColorPicker;
+import com.jfoenix.controls.JFXSlider;
+import com.jfoenix.controls.JFXTextField;
+
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+import javafx.scene.input.Clipboard;
+import javafx.scene.input.ClipboardContent;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.shape.Circle;
+
+public class getpicker {
+
+    @FXML private AnchorPane Panecolorpicker;
+    @FXML private JFXTextField getcodepicger;
+    @FXML private JFXColorPicker codepicker;
+    @FXML private Circle showcolor;
+    @FXML private JFXButton btncopy;
+    @FXML private JFXSlider rgbRed;
+    @FXML private JFXSlider rgbgreen;
+    @FXML private JFXSlider rgbBlue;
+    @FXML private Label showrgbcode;
+    @FXML private JFXButton btncopyrgb;
+    
+    @FXML
+    private Circle showcolor1;
+   
+
+   
+
+    @FXML
+    private Label Bc3;
+
+    @FXML
+    private Label Rs1;
+
+    @FXML
+    private Label Gs2;
+
+    @FXML
+    private Label Bs3;
+    // fUNCTION 
+  
+    @FXML void actionCopy(ActionEvent event) {
+    	String hex2 = "#" + Integer.toHexString(codepicker.getValue().hashCode()); 
+   	 Clipboard clipboard = Clipboard.getSystemClipboard();
+   	 ClipboardContent content = new ClipboardContent();
+   	 content.putString(hex2);
+   	 clipboard.setContent(content);
+    }
+    @FXML void actionCopyrgb(ActionEvent event) {
+    	 Clipboard clipboard = Clipboard.getSystemClipboard();
+       	 ClipboardContent content = new ClipboardContent();
+       	 content.putString(showrgbcode.getText());
+       	 clipboard.setContent(content);
+
+    }
+   
+    @FXML void actioncolor(ActionEvent event) {
+    	String hex2 = "#" + Integer.toHexString(codepicker.getValue().hashCode()); 
+       	
+      	 getcodepicger.setText(hex2);
+         showcolor.setFill(codepicker.getValue());
+         Color getrGB = codepicker.getValue();
+         showrgbcode.setText("(" + (int)(getrGB.getRed()*255)+","+(int)(getrGB.getGreen()*255)+","+(int)(getrGB.getBlue()*255)+")");
+         rgbRed.setValue((int)(getrGB.getRed()*255));
+         rgbgreen.setValue((int)(getrGB.getGreen()*255));
+         rgbBlue.setValue((int)(getrGB.getBlue()*255));
+         
+    }
+    @FXML
+    void actionsliderRed(MouseEvent event) {
+    	showcolor1.setFill(Color.rgb((int)rgbRed.getValue(),(int)rgbgreen.getValue() ,(int)rgbBlue.getValue()));
+    	showrgbcode.setText("(" +(int)rgbRed.getValue()+","+(int)rgbgreen.getValue()+","+(int)rgbBlue.getValue()+")");
+        
+    }
+
+
+__________________________________________________________________________________________________________________________________  
+      public void actionSlider(MouseEvent event) {
+        showActionRGB.setFill(Color.rgb((int)sliderRED.getValue(),(int)SliderGreen.getValue() ,(int)SliderBlue.getValue()));
+        showcodeRGB.setText("(" +(int)sliderRED.getValue()+","+(int)SliderGreen.getValue()+","+(int)SliderBlue.getValue()+")");
+        
+    }
+
+}
+
+
+
+settitle 
+
+    moon.getIcons().add(new Image(getClass().getResource("iconpickercolor.png").toExternalForm()));
